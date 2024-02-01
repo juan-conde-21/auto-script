@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rolldice
+  name: rolldice
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.0.183.107
+  clusterIPs:
+  - 10.0.183.107
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30879
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: rolldice
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 20.29.131.113
